@@ -69,13 +69,13 @@ class VideoMuteButton extends AbstractVideoMuteButton<IProps> {
      * @inheritdoc
      * @returns {void}
      */
-    componentDidMount() {
-        this.props.dispatch(registerShortcut({
-            character: 'V',
-            helpDescription: 'keyboardShortcuts.videoMute',
-            handler: this._onKeyboardShortcut
-        }));
-    }
+    // componentDidMount() {
+    //     this.props.dispatch(registerShortcut({
+    //         character: 'V',
+    //         helpDescription: 'keyboardShortcuts.videoMute',
+    //         handler: this._onKeyboardShortcut
+    //     }));
+    // }
 
     /**
      * Unregisters the keyboard shortcut that toggles the video muting.
@@ -83,9 +83,9 @@ class VideoMuteButton extends AbstractVideoMuteButton<IProps> {
      * @inheritdoc
      * @returns {void}
      */
-    componentWillUnmount() {
-        this.props.dispatch(unregisterShortcut('V'));
-    }
+    // componentWillUnmount() {
+    //     this.props.dispatch(unregisterShortcut('V'));
+    // }
 
     /**
      * Gets the current accessibility label, taking the toggled and GUM pending state into account. If no toggled label
@@ -169,15 +169,15 @@ class VideoMuteButton extends AbstractVideoMuteButton<IProps> {
         if (this._isDisabled()) {
             return;
         }
-
+    
         sendAnalytics(
             createShortcutEvent(
                 VIDEO_MUTE,
                 ACTION_SHORTCUT_TRIGGERED,
-                { enable: !this._isVideoMuted() }));
-
-        AbstractButton.prototype._onClick.call(this);
-    }
+                { enable: false })); // always mute the video
+    
+        // AbstractButton.prototype._onClick.call(this);
+    }    
 }
 
 /**
